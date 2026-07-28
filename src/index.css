@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+/* index.css or globals.css */
+html, body, #root {
+  background-color: #000;
+  min-height: 100%;
+}

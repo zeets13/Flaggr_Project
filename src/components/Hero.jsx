@@ -1,63 +1,44 @@
-import {FaFacebookMessenger, FaRobot} from "react-icons/fa"
-import ChatPage from "../pages/ChatPage"
+import { motion } from "framer-motion";
+import { ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Features from "../pages/Features";
+import {Brain,ShieldAlert,Sparkles}from "lucide-react";
 
-export default function ChatWindow() {
-  const navigate = useNavigate();
+export default function Hero() {
+    const navigate = useNavigate();
+    return (
+        <section className="flex flex-col justify-between px-4 sm:px-6 lg:px-10">
+            <div className="flex flex-col items-center text-center">
 
-  return (
-    <section className="flex flex-col mx-auto ">
+                <motion.div
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ repeat: Infinity, duration: 4 }}
+                    className="mt-8"
+                >
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-red-500/20 backdrop-blur-xl flex items-center justify-center border border-red-500/30">
+                        <ShieldCheck
+                            size={40}
+                            className="text-red-400 sm:size-12 lg:size-14"
+                        />
+                    </div>
+                </motion.div>
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white mt-5">
+                    Welcome to <span className="text-red-400"> Flaggr</span>    
+                </h1>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl text-white mt-3 font-semibold">
+                    We listen. We judge.
+                </h2>
+                <div className="flex gap-5 mt-8">
+                    <button
+                        onClick={() =>navigate("/chat")}
+                        className="px-6 sm:px-8 py-3 rounded-full bg-red-500 hover:bg-red-600 transition font-semibold text-white"
+                    >
+                        Try Flaggr
+                    </button>
+                </div>
 
-      <div className="flex flex-col justify-center items-center py-40 ">
-
-        <div className="text-7xl">
-          <FaRobot size={80} className="text-white" />
-
-          
-        </div>
-
-        <h1 className="text-6xl font-bold mt-6 text-white text-center">
-
-          Welcome to HateShield AI
-
-        </h1>
-
-        <p className="text-gray-200 mt-4">
-
-          Detect harmful speech with AI-powered moderation.
-
-        </p>
-        
-        <div className="mt-8">
-          <button onClick={() => navigate("/chat")}
-             className="cursor-pointer bg-taupe-800 text-white text-lg tracking-[0.05em] uppercase font-bold rounded-full border-2 px-8 py-2 font-semibold hover:bg-white hover:text-black transition">
-            Start
-          </button>
-        </div>
-
-        
-
-        
-
-        
-
-
-      </div>
-      {/*
-      <div className="flex-1 overflow-y-auto py-10">
-
-        <Chats
-          sender="user"
-          message="I hate you."
-        />
-        </div>
-      
-      <MessageInput/>
-      */}
-      
-
-  
-
-    </section>
-  );
+            </div>
+           <Features/>
+        </section>
+    );
 }

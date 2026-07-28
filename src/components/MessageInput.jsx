@@ -3,7 +3,7 @@ import { FaPaperPlane } from "react-icons/fa";
 
 export default function MessageInput({input,setInput,sendMessage}) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex justify-center p-5 bg-[#211c1c]/80 backdrop-blur-lg">
+    <div className="fixed bottom-0 left-0 right-0 flex justify-center p-5 backdrop-blur-lg">
 
       <div className="w-full max-w-5xl  bg-black rounded-xl flex items-center px-6 py-5">
 

@@ -1,91 +1,107 @@
 import Navbar from "../components/Navbar";
 import ChatWindow from "../components/ChatWindow";
 import MessageInput from "../components/MessageInput";
-import api from "../api/api";
+
 import { useState } from "react";
+import api from "../api/api";
 
 export default function ChatPage() {
-  const [loading, setLoading] = useState(false);
-   const [messages, setMessages] = useState([
+
+  const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Hello! I'm here to help detect harmful speech."
+      text: "Hello! I'm Flaggr AI. Paste a message below and I'll analyze it for harmful language."
     }
   ]);
 
-  // Store current input
   const [input, setInput] = useState("");
-  
+  const [loading, setLoading] = useState(false);
+
   const sendMessage = async () => {
 
-  if (!input.trim()) return;
+    if (!input.trim()) return;
 
-  const userMessage = input;
+    const userMessage = input;
 
-  // Show user's message immediately
-  setMessages(prev => [
-    ...prev,
-    {
-      sender: "user",
-      text: userMessage
+    setMessages(prev => [
+      ...prev,
+      {
+        sender: "user",
+        text: userMessage
+      }
+    ]);
+
+    setInput("");
+
+    setLoading(true);
+
+    try {
+
+      const response = await api.post("/predict", {
+        text: userMessage
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      setMessages(prev => [
+        ...prev,
+        {
+          sender: "bot",
+          text: response.data.message
+        }
+      ]);
+
     }
-  ]);
 
-  // Clear input
-  setInput("");
-  setLoading(true);
-  try {
-    
-    const response = await api.post("/predict", {
-      text: userMessage
-    });
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    catch {
 
-    // Add bot response
-    setLoading(false);
+      setMessages(prev => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "Sorry, something went wrong."
+        }
+      ]);
 
-    setMessages(prev => [
-      ...prev,
-      {
-        sender: "bot",
-        text: response.data.message
-      }
-    ]);
+    }
 
-  } catch (error) {
+    finally {
 
-    console.log(error);
-    console.log(error.response);
-    console.log(error.message);
+      setLoading(false);
 
-    setMessages(prev => [
-      ...prev,
-      {
-        sender: "bot",
-        text: "Sorry, something went wrong."
-      }
-    ]);
+    }
 
-  }
+  };
 
-};
   return (
-    <section className="h-screen bg-[#211c1c] flex flex-col">
+
+    <section className="h-screen bg-gradient-to-br from-[#120b10] via-[#1d1717] to-[#2d0b17] flex flex-col">
 
       <Navbar />
 
-      <ChatWindow 
-        messages={messages}
-        loading={loading}
+      {/* Chat Area */}
+
+      <div className="flex-1 flex flex-col overflow-hidden">
+
+        <ChatWindow
+
+          messages={messages}
+          loading={loading}
 
         />
 
-      <MessageInput 
-         input={input}
-        setInput={setInput}
-        sendMessage={sendMessage}
+        <MessageInput
+
+          input={input}
+          setInput={setInput}
+          sendMessage={sendMessage}
+
         />
+
+      </div>
 
     </section>
+
   );
+
 }
