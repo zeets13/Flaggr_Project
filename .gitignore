@@ -1,0 +1,76 @@
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python / Flask Backend
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+
+venv/
+.venv/
+env/
+ENV/
+
+# Flask / SQLite
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# ML Models
+# =========================
+new_NLP/model_binary/
+new_NLP/model_multilabel/
+
+# Model/checkpoint files
+*.h5
+*.keras
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+checkpoints/
+checkpoint/
+
+# =========================
+# React / Node
+# =========================
+node_modules/
+dist/
+build/
+.vite/
+
+# =========================
+# Jupyter / Colab
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================
+# Logs / temporary
+# =========================
+*.log
+*.tmp
+*.temp
+*.bak
