@@ -81,7 +81,7 @@ The frontend does not directly interact with the model. The Flask backend acts a
 
 ---
 
-# 🏗️ Project Architecture
+#  Project Architecture
 
 The project is divided into three major layers:
 
@@ -137,7 +137,7 @@ The model is fine-tuned on labeled harmful speech dataset and used for text clas
 
 ---
 
-# 🤖 Machine Learning Pipeline
+#  Machine Learning Pipeline
 
 ## 1. Dataset
 ## Source dataset: UCBerkeley D-Lab Measuring Hate Speech dataset
@@ -210,7 +210,7 @@ Insult, Humiliate, Dehumanize, Genocide, Violence
 
 ---
 
-# 🧪 Model Training
+# Model Training
 
 The models are fine tuned rather than training a language model from scratch.
 
@@ -241,6 +241,9 @@ Saved Model + Tokenizer
 The trained model and tokenizer are saved locally and loaded by the Flask backend during application startup.
 
 ---
+# Colab Notebook
+
+The notebook is shared in the repository under "Notebook" where all the codes for training the model are provided. 
 
 # Backend API
 
@@ -413,7 +416,7 @@ The desktop sidebar transforms into a mobile navigation drawer controlled throug
 
 ---
 
-# 🛠️ Technologies
+# Technologies
 
 | Technology                | Purpose                       |
 | ------------------------- | ----------------------------- |
@@ -551,7 +554,7 @@ The backend will run locally on the configured Flask port.
 
 ---
 
-# 🔐 Environment Variables
+# Environment Variables
 
 API configuration should be kept separate from the source code.
 
@@ -565,7 +568,7 @@ The frontend API configuration can then use the environment variable instead of 
 
 ---
 
-# 🧪 Testing the API
+# Testing the API
 
 The `/predict` endpoint can be tested using tools such as Postman.
 
@@ -601,7 +604,7 @@ Planned improvements include:
 
 ---
 
-## ⭐ Conclusion
+## Conclusion
 
 Flaggr demonstrates how **NLP and modern web technologies can work together to create safer online communication**.
 
